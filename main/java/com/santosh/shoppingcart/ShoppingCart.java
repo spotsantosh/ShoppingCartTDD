@@ -11,9 +11,9 @@ public class ShoppingCart {
 	}
 	
 	public void addProduct(Product product) {
-		Product existingProduct = productMap.put(product.getName(), product);
+		Product existingProduct = productMap.putIfAbsent(product.getName(), product);
 		if(existingProduct != null) {
-			product.incrementQuantity(existingProduct.getQuantity());
+			existingProduct.incrementQuantity(product.getQuantity());
 		}
 	}
 
